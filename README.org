@@ -4,3 +4,9 @@
     and ~appearance~
   + themes are loaded lastly to make it very clear when something has
     gone wrong (since it's obvious when the theme hasn't loaded) 
+- bashrc
+  + mostly preconfigured by xfce
+  + modifications to environment variables for running emacs in
+    client/server    
+    
+    
