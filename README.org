@@ -1,0 +1,6 @@
+* My .dotfiles
+- emacs
+  + sorted into three sections: ~global settings~, ~major mode hooks~,
+    and ~appearance~
+  + themes are loaded lastly to make it very clear when something has
+    gone wrong (since it's obvious when the theme hasn't loaded) 
