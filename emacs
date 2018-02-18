@@ -49,6 +49,7 @@
 
 (package-initialize)
 
+(require 'req-package)
 
 (custom-set-variables
  '(custom-safe-themes
@@ -64,6 +65,22 @@
 (custom-set-faces
  )
 
+;; ispell autocomplete
+
+;; Completion words longer than 4 characters
+   (custom-set-variables
+     '(ac-ispell-requires 4)
+     '(ac-ispell-fuzzy-limit 4))
+
+   (eval-after-load "auto-complete"
+     '(progn
+         (ac-ispell-setup)))
+
+   (add-hook 'git-commit-mode-hook 'ac-ispell-ac-setup)
+   (add-hook 'mail-mode-hook 'ac-ispell-ac-setup)
+   (add-hook 'org-mode-hook 'ac-ispell-ac-setup)
+   (setq ac-delay 0)
+   
 ;;;;;;;;;;;;;;;;;;;;;;
 ;; major mode hooks ;;
 ;;;;;;;;;;;;;;;;;;;;;;
@@ -128,15 +145,26 @@
 (setq python-shell-native-complete nil)
 
 ;; c/c++
+
 (add-hook 'c++-mode-hook 'irony-mode)
 (add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'c++-mode-hook 'company-mode)
-(add-hook 'c-mode-hook 'company-mode)
 (add-hook 'c++-mode-hook 'flycheck-mode)
 (add-hook 'c-mode-hook 'flycheck-mode)
+
+(setq-default irony-cdb-compilation-databases '(irony-cdb-libclang
+                                                irony-cdb-clang-complete))
+
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
-;; spaces not tabs 
+(add-hook 'c++-mode-hook 'company-mode)
+(add-hook 'c-mode-hook 'company-mode)
+
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+  
+(setq company-idle-delay 0)
+
+;; Spaces not tabs 
 (setq-default indent-tabs-mode nil)
 (setq tab-width 8) ; or any other preferred value
 ;;(defvaralias 'c-basic-offset 'tab-width)
