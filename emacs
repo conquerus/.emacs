@@ -85,6 +85,10 @@
 ;; major mode hooks ;;
 ;;;;;;;;;;;;;;;;;;;;;;
 
+;; text mode
+(add-hook 'text-mode-hook 'auto-fill-mode)
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
+
 ;; org mode
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
