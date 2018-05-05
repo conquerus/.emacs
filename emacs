@@ -42,35 +42,45 @@
   (kill-emacs)
   )
 
-;;melpa packages
+;;more packages
 (require 'package)
-(add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/"))
+;;(package-initialize)
 
-(package-initialize)
+(setq package-archives
+  '(("gnu" . "http://elpa.gnu.org/packages/")
+    ("marmalade" . "https://marmalade-repo.org/packages/")
+    ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 (require 'req-package)
 
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ac-ispell-fuzzy-limit 4)
+ '(ac-ispell-requires 4)
  '(custom-safe-themes
-   (quote
-    ("ed317c0a3387be628a48c4bbdb316b4fa645a414838149069210b66dd521733f" "e9460a84d876da407d9e6accf9ceba453e2f86f8b86076f37c08ad155de8223c" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "0b6cb9b19138f9a859ad1b7f753958d8a36a464c6d10550119b2838cedf92171" "d6922c974e8a78378eacb01414183ce32bc8dbf2de78aabcc6ad8172547cb074" default)))
+   '("ed317c0a3387be628a48c4bbdb316b4fa645a414838149069210b66dd521733f" "e9460a84d876da407d9e6accf9ceba453e2f86f8b86076f37c08ad155de8223c" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "0b6cb9b19138f9a859ad1b7f753958d8a36a464c6d10550119b2838cedf92171" "d6922c974e8a78378eacb01414183ce32bc8dbf2de78aabcc6ad8172547cb074" default))
  '(inhibit-startup-screen t)
  '(org-file-apps
-   (quote
-    ((auto-mode . emacs)
+   '((auto-mode . emacs)
      ("\\.mm\\'" . default)
      ("\\.x?html?\\'" . emacs)
-     ("\\.pdf\\'" . emacs)))))
+     ("\\.pdf\\'" . emacs)))
+ '(package-selected-packages
+   '(better-defaults magit swiper sr-speedbar smart-mode-line req-package py-autopep8 multiple-cursors function-args flycheck-pycheckers flycheck-irony elpy el-get cyberpunk-theme company-irony-c-headers company-irony async ac-ispell ac-clang)))
 (custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 
 ;; ispell autocomplete
 
 ;; Completion words longer than 4 characters
-   (custom-set-variables
-     '(ac-ispell-requires 4)
-     '(ac-ispell-fuzzy-limit 4))
+   
 
    (eval-after-load "auto-complete"
      '(progn
@@ -109,7 +119,7 @@
 (org-babel-do-load-languages
  'org-babel-load-languages
  '(
-   (sh . t)
+   (shell . t)
    (python . t)
    (gnuplot t)
    (ditaa . t)
@@ -130,7 +140,7 @@
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
   (add-hook 'elpy-mode-hook 'flycheck-mode))
 
-;; auto pep8
+;; Auto pep8
  (defvar myPackages
    '(better-defaults
      elpy
@@ -138,15 +148,17 @@
      material-theme
      py-autopep8)) ;; add the autopep8 package
 
- (require 'py-autopep8)
- (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+(require 'py-autopep8)
+(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
 
 ;; ipython
-(elpy-use-ipython)
+;;(elpy-use-ipython)
+
 (setq python-shell-interpreter "ipython"
-      python-shell-interpreter-args "--simple-prompt -i")
+     python-shell-interpreter-args "--simple-prompt -i")
 
 (setq python-shell-native-complete nil)
+(add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 
 ;; c/c++
 
@@ -211,7 +223,7 @@
 ;; disable useless menus
 (tool-bar-mode -1)
 (menu-bar-mode -1)
-(scroll-bar-mode -1)
+;;(scroll-bar-mode -1)
 
 ;; change the speedbar to be in a frame
 (require 'sr-speedbar)

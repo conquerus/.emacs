@@ -92,20 +92,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# added by Anaconda2 4.2.0 installer
-export PATH="/home/farnsworth/anaconda2/bin:$PATH"
-export PATH="/usr/local/MATLAB/R2016b/bin:$PATH"
-export PATH="/usr/local/tecplot/360ex_2017r1/bin:$PATH"
-
 # add user path
 export PATH="/home/farnsworth/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
 
 # maple
 export PATH="/home/farnsworth/maple2016/bin:$PATH"
-
-# virtualenvwrapper config
-export PROJECT_HOME=~/dev
-export WORKON_HOME=~/dev/virtualenvs
 
 #EMACS STUFF
 #fix colours
@@ -120,10 +112,3 @@ export PYTHONPATH="/home/farnsworth/.local/lib/python3.5/site-packages:$PYTHONPA
 #dont use canadian (sorry)
 export LANG=en_US.utf8 
 
-#library path for auto diff adept
-export LD_LIBRARY_PATH=/home/farnsworth/school/CFFC/adept-1.1/adept/.libs/:$LD_LIBRARY_PATH
-
-#paraview
-export PATH="/home/farnsworth/software/ParaView-5.1.0-Qt4-OpenGL2-MPI-Linux-64bit/bin:$PATH"
-export ParaView_DIR=/home/farnsworth/software/ParaView-5.1.0-Qt4-OpenGL2-MPI-Linux-64bit
-unset ParaView_VERSION        # avoid using ThirdParty settings
